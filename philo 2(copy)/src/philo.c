@@ -60,7 +60,10 @@ void	startphilo(t_table *table)
 
 	i = -1;
 	while (++i < table->nb_philo)
+	{
+		table->philo[i].lastime = get_time();
 		pthread_create(&table->tred[i], NULL, philothread, &table->philo[i]);
+	}
 	pthread_mutex_lock(&table->isded);
 	while (table->isdead != 1 && ntime(table) != 0)
 	{
